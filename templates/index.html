@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafik Relay</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Trafik Relay</h1>
+    <p>Welcome to the Trafik Relay web interface!</p>
+    
+    <!-- Routers Table -->
+    <div id="routers">
+        <table>
+            <thead>
+                <tr>
+                    <th>Relayed</th>
+                    <th>Not Relayed</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="router-table-body">
+                <!-- Router data will be populated here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+
+     <!-- Router Rules Management -->
+         <div id="router-rules">
+        <h2>Router Rules</h2>
+        
+        <table id="router-rules-table">
+            <thead>
+                <tr>
+                    <th>Allow</th>
+                    <th>Deny</th>
+                </tr>
+            </thead>
+            <tbody id="router-rules-table-body">
+                <!-- Router data will be populated here by JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Update Button -->
+        <button id="update-router-rules-btn">Update Router Rules</button>
+    </div>
+
+    <div id="entrypoint-mapping">
+        <h2>Local and Remote Entry Points</h2>
+
+        <div id="entrypoints-container">
+        
+            <!-- Remote entrypoint areas -->
+            <div class="remote-entrypoints" id="remote-entrypoints-container">
+                <!-- Remote entrypoints will be generated here -->
+            </div>
+        </div>
+        
+        <!-- Container for holding the lines connecting local to remote -->
+        <div id="connections"></div>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rules.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/routers.js') }}"></script>
+</body>
+</html>

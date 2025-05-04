@@ -1,0 +1,4 @@
+requests==2.32.3
+flask==2.3.3
+PyYAML>=6.0,<7.0
+python-dotenv>=1.0,<2.0

@@ -1,0 +1,296 @@
+/* Default Light Mode Styles */
+:root {
+    --background-color: #f4f7fc;
+    --primary-text-color: #333;
+    --secondary-text-color: #777;
+    --table-header-bg: #4CAF50;
+    --button-bg: #007BFF;
+    --button-hover-bg: #0056b3;
+    --input-bg: #f9f9f9;
+    --input-bg-focus: #d6d6d6;
+    --table-row-bg: #f9f9f9;
+    --table-border-color: #ddd;
+    --entrypoint-local-bg: #7ea1ff;
+    --entrypoint-remote-bg: #ff7ea1;
+    --entrypoint-local-hover-bg: #5f8db5;
+    --entrypoint-remote-hover-bg: #d15a7e;
+    --connection-border-color: #ddd;
+}
+
+[data-theme="dark"] {
+    --background-color: #181818;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #bbb;
+    --table-header-bg: #1b5e20;
+    --button-bg: #007BFF;
+    --button-hover-bg: #0056b3;
+    --input-bg: #333;
+    --input-bg-focus: #5c6063;
+    --table-row-bg: #282828;
+    --table-border-color: #444;
+    --entrypoint-local-bg: #5f8db5;
+    --entrypoint-remote-bg: #d15a7e;
+    --entrypoint-local-hover-bg: #7ea1ff;
+    --entrypoint-remote-hover-bg: #ff7ea1;
+    --connection-border-color: #444;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Headers */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Paragraphs */
+p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Containers */
+#routers, #router-rules, #entrypoint-mapping {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 2rem;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    color: #fff;
+}
+
+td {
+    background-color: var(--table-row-bg);
+    border-top: 1px solid var(--table-border-color);
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Entry Points Section */
+#entrypoints-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.entrypoint {
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid var(--table-border-color);
+    background-color: var(--input-bg);
+    color: var(--primary-text-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.entrypoint:hover {
+    background-color: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+.entrypoint:active {
+    background-color: #0056b3;
+    transform: scale(0.98);
+}
+
+.entrypoint.local {
+    background-color: var(--entrypoint-local-bg);
+}
+
+.entrypoint.local:hover {
+    background-color: var(--entrypoint-local-hover-bg);
+}
+
+/* Draggable Styling */
+.entrypoint.local[draggable="true"],
+.entrypoint.remote[draggable="false"] {
+    cursor: pointer;
+}
+
+/* Connections (lines between entrypoints) */
+#connections {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    margin-top: 2rem;
+    border-top: 2px dashed var(--connection-border-color);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #routers, #router-rules, #entrypoint-mapping {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Input Field Styles */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--primary-text-color);
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007BFF;
+    background-color: var(--input-bg-focus);
+}
+
+/* Styling for Table Rows with Inputs */
+#router-rules-table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+#router-rules-table input[type="text"] {
+    width: 90%;
+}
+
+/* Update Router Rules Button */
+#update-router-rules-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#update-router-rules-btn:hover {
+    background-color: #45a049;
+}
+
+/* Router Table Column Width */
+#routers th:nth-child(1),
+#routers td:nth-child(1) {
+    width: 50%;
+}
+
+#routers th:nth-child(2),
+#routers td:nth-child(2) {
+    width: 25%;
+}
+
+#routers th:nth-child(3),
+#routers td:nth-child(3) {
+    width: 25%;
+    text-align: left;
+}
+
+/* Flex Layout for Entry Points */
+#entrypoint-mapping {
+    padding: 20px;
+}
+
+#entrypoints-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.entrypoint.local {
+    margin-top: 10px;
+}
+
+#connections {
+    position: relative;
+    margin-top: 20px;
+}
+
+#remote-entrypoints-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-grow: 1;
+    width: 100%;
+    flex-wrap: wrap;
+}
