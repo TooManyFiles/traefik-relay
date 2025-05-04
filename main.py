@@ -1,6 +1,6 @@
 import requests
 import json
-from flask import Flask, Response
+from flask import Flask, Response, redirect
 import yaml
 import get
 import config

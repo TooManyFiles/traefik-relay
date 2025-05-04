@@ -13,10 +13,18 @@ load_dotenv()
 
 # Traefik Configuration (from environment variables)
 TRAEFIK_URL = os.getenv('TRAEFIK_URL', 'http://localhost:8080/')
-NODE_NAME = os.getenv('NODE_NAME', 'default_node')
-NODE_ADDRESS = os.getenv('NODE_ADDRESS', 'localhost')
-REMOTE_TRAEFIK_URL = os.getenv('REMOTE_TRAEFIK_URL', '')
+if not TRAEFIK_URL.endswith('/'):
+    TRAEFIK_URL += '/'
 
+NODE_NAME = os.getenv('NODE_NAME', 'default_node')
+
+NODE_ADDRESS = os.getenv('NODE_ADDRESS', 'localhost')
+if not NODE_ADDRESS.endswith('/'):
+    NODE_ADDRESS += '/'
+
+REMOTE_TRAEFIK_URL = os.getenv('REMOTE_TRAEFIK_URL', '')
+if REMOTE_TRAEFIK_URL and not REMOTE_TRAEFIK_URL.endswith('/'):
+    REMOTE_TRAEFIK_URL += '/'
 # Load additional configuration from config.yml
 CONFIG_FILE = "/app/config/config.yml"
 # Load or create config.yml
