@@ -25,12 +25,10 @@ def buildYML(routers):
     }
 
     data = {
-        'name': 'Traefik',
-        'version': '2.0',
-        'routers': {
-            'http': routers
+        'http': {
+            'routers': routers,
+            'services': services
         },
-        'services': services
     }
     yaml_content = yaml.dump(data, default_flow_style=False)
     return yaml_content
@@ -45,7 +43,8 @@ def serve_yaml():
     for router_name, router_info in data.items():
         router_name, router_src = router_name.split('@')
         if router_src == "docker":
-            entrypoints, deny = utils.entryPointsTranslation(router_info.get('entryPoints', []))
+            entrypoints, deny = utils.entryPointsTranslation(
+                router_info.get('entryPoints', []))
             if deny:
                 continue
             data = {
@@ -56,17 +55,19 @@ def serve_yaml():
             routers[router_name] = data
 
     # Return YAML content as a response with 'application/x-yaml' MIME type
-    return Response(buildYML(routers) , mimetype='application/x-yaml')
-
-
+    return Response(buildYML(routers), mimetype='application/x-yaml')
 
 
 def shouldRelay(router_name):
     return globals.router_matcher(router_name)
 # Redirect from / to /webui
+
+
 @app.route('/')
 def redirect_to_webui():
     return redirect('/webui', code=302)
+
+
 # Run the Flask application
 if __name__ == '__main__':
     webui.register_blueprint(app)
