@@ -63,7 +63,10 @@ def serve_yaml():
 
 def shouldRelay(router_name):
     return globals.router_matcher(router_name)
-
+# Redirect from / to /webui
+@app.route('/')
+def redirect_to_webui():
+    return redirect('/webui', code=302)
 # Run the Flask application
 if __name__ == '__main__':
     webui.register_blueprint(app)

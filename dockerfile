@@ -1,4 +1,4 @@
-FROM python:3.13-slim
+FROM python:3.13-alpine3.21
 
 RUN python -m pip install --upgrade pip
 WORKDIR /app
