@@ -56,7 +56,7 @@ def serve_yaml():
             routers[router_name] = data
 
     # Return YAML content as a response with 'application/x-yaml' MIME type
-    return Response(buildYML(routers))  # , mimetype='application/x-yaml')
+    return Response(buildYML(routers) , mimetype='application/x-yaml')
 
 
 
