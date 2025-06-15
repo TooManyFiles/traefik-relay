@@ -1,7 +1,7 @@
 import json
 import requests
 import config
-
+from globals import logger
 
 def get_http_routers():
     try:
@@ -16,18 +16,18 @@ def get_http_routers():
             routers = data.get('routers', {})
             
             if routers:
-                print("HTTP Routers:")
+                logger.debug("HTTP Routers:")
                 for router_name, router_info in routers.items():
-                    print(f"\nRouter Name: {router_name}")
-                    print(json.dumps(router_info, indent=4))
+                    logger.debug(f"\nRouter Name: {router_name}")
+                    logger.debug(json.dumps(router_info, indent=4))
                 return routers
             else:
-                print("No HTTP routers found.")
+                logger.info("No HTTP routers found.")
                 return {}
         else:
-            print(f"Failed to get data from Traefik API. Status code: {response.status_code}")
+            logger.error(f"Failed to get data from Traefik API. Status code: {response.status_code}")
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        logger.error(f"An error occurred: {e}")
     return {}
 
 def get_entrypoints():
@@ -41,17 +41,17 @@ def get_entrypoints():
             if data:
                 return [entrypoint.get('name', "unnamed") for entrypoint in data]
             else:
-                print("No Entry Points found.")
+                logger.info("No Entry Points found.")
                 return []
         else:
-            print(f"Failed to get data from Traefik API. Status code: {response.status_code}")
+            logger.error(f"Failed to get data from Traefik API. Status code: {response.status_code}")
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        logger.error(f"An error occurred: {e}")
     return {}
 
 def get_remote_entrypoints():
     if config.REMOTE_TRAEFIK_URL == "":
-        print("No remote Traefik URL configured.")
+        logger.error("No remote Traefik URL configured.")
         return []
     try:
         # Send GET request to Traefik API
@@ -63,10 +63,10 @@ def get_remote_entrypoints():
             if data:
                 return [entrypoint.get('name', "unnamed") for entrypoint in data]
             else:
-                print("No Entry Points found.")
+                logger.info("No Entry Points found.")
                 return []
         else:
-            print(f"Failed to get data from Traefik API. Status code: {response.status_code}")
+            logger.error(f"Failed to get data from Traefik API. Status code: {response.status_code}")
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        logger.error(f"An error occurred: {e}")
     return {}

@@ -2,6 +2,7 @@ import re
 from typing import Callable
 import config
 import globals
+from globals import logger
 
 def compile_router_matcher() -> Callable[[str], bool]:
     # Strip ^ and $ to re-wrap consistently
@@ -34,5 +35,5 @@ def entryPointsTranslation(entryPoints):
             if entryPoint not in output:
                 output.append(config.ENTRYPOINT_MAPPING[entryPoint])
         else:
-            print(f"Entry point '{entryPoint}' not found in mapping. Will not be left out.")
+            logger.warning(f"Entry point '{entryPoint}' not found in mapping. Will not be left out.")
     return output, False
