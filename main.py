@@ -5,6 +5,7 @@ import yaml
 import get
 import config
 import utils
+import globals as globals
 
 import webui.uiMain as webui
 # Create a Flask application
