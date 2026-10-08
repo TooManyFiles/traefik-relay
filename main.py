@@ -45,7 +45,7 @@ def serve_yaml():
         if router_src == "docker":
             entrypoints, deny = utils.entryPointsTranslation(
                 router_info.get('entryPoints', []))
-            if deny:
+            if deny or not globals.router_matcher(router_name):
                 continue
             data = {
                 "rule": router_info.get('rule', ''),
